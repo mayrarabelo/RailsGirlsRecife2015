@@ -1,0 +1,38 @@
+<article>
+	<h2>
+		<%= @post.title %>
+	</h2>
+	<p>
+	<%= raw @post.content %>
+	</p>
+	<p><%= @post.author %>, <%= @post.published_at %></p>
+	<div class="tags">
+		<% for tag in @post.tags.split(",") %>
+		<a href="#"><%= tag %></a>
+		<% end %>
+	</div>
+</article>
+
+<br>
+<a href="/">Voltar para a pãgina inicial</a>
+<br>
+
+<h2>Deixe o seu comentário</h2>
+<form>
+  Nome:<br>
+  <input type="text" name="Nome:">
+  <br>
+  Email:<br>
+  <input type="text" name="Endereço de e-mail:">
+  <small>* O seu endereço de e-mail não será publicado</small><br>
+  Comentário:<br>
+  <textarea rows="10" cols="60"></textarea><br>
+  <button>Publicar</button>
+</form><br>
+	<% for comment in @post.comments %>
+	<div style="background: #ddd; padding: 10px; margin-bottom: 10px">
+		<p>Publicado por:<strong> <%= comment.name %></strong> em <%= comment.created_at %></p>
+		<%= comment.comment %>
+	</div>
+	<% end %>
+
